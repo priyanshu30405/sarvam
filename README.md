@@ -1,39 +1,47 @@
-# Company X Developer Portal
+# Developer Portal
 
-Frontend intern assignment: **Inference Playground** (Part A) and **Model Output Diff** (Part B).
+A small React app for testing on-device inference in the browser — streaming responses, live metrics, and a token-level diff view to compare model outputs.
 
-## Quick start
+**Live demo:** https://sarvam-xi.vercel.app/
+
+## Run locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173).
+Then open [http://localhost:5173](http://localhost:5173).
 
-## Features
+## What's inside
 
-### Part A — Inference Playground
-- Text / audio input mode toggle
-- Streaming via `fetch` + `ReadableStream` (`src/lib/streamInference.ts`)
-- Live token count and tokens/sec
-- Mid-stream error simulation; partial output preserved
-- Keyboard: Tab navigation, `Ctrl+Enter` to run, visible focus rings, ARIA live regions
+**Inference playground**
+- Switch between text and audio input
+- Streams tokens with `fetch` + `ReadableStream`
+- Shows token count and tokens/sec while generating
+- Handles network drops and timeouts without wiping partial output
+- Keyboard friendly (`Tab`, `Ctrl+Enter` to run)
 
-### Part B — Model Diff
-- Side-by-side token-level diff (`src/lib/tokenDiff.ts`)
-- Custom Wagner–Fischer edit-distance backtracking (no diff library)
+**Model diff**
+- Side-by-side comparison of two model outputs on the same prompt
+- Highlights changed words/tokens (not line-level diff)
+- Diff logic lives in `src/lib/tokenDiff.ts` — Wagner–Fischer edit distance with backtracking
 
-## Deploy (Vercel)
+## Project structure
 
-1. Push this repo to GitHub.
-2. Import in [Vercel](https://vercel.com) — framework preset: **Vite**.
-3. Deploy. API route: `api/infer.ts`.
+```
+src/components/playground/   inference UI
+src/components/diff/         diff UI
+src/lib/streamInference.ts   streaming client
+src/lib/tokenDiff.ts         diff algorithm
+api/infer.ts                 mock streaming API (Vercel)
+server/inferHandler.ts       same API for local dev
+```
 
-## Submission PDF
+## Tech
 
-Copy sections from `docs/SUBMISSION.md` and `docs/BUG_REPORT.md` into your PDF, or export **`docs/CONSOLIDATED_FOR_PDF.md`** as a single file (see `docs/PDF_EXPORT.md`). Add your **GitHub URL**, **Vercel/Netlify URL**, and **3-minute** Loom/YouTube walkthrough link. Confirm your cohort deadline (brief: **19 May, 5pm IST**).
+React 18, TypeScript, Vite, React Router. No UI library — plain CSS.
 
-## Simulate errors
+## Notes
 
-In the playground, expand **Simulate errors (demo)** to trigger mid-stream drop or model timeout.
+The inference endpoint is mocked for demo purposes. Under **Simulate errors** in the playground you can trigger a mid-stream failure or a timeout to see how the UI behaves.

@@ -12,7 +12,7 @@
 - [ ] Replace placeholder links in the table below with **real, public** URLs (click each in the PDF export preview).
 - [ ] Record a **≤ 3 minute** walkthrough covering playground (text + audio + one error path), model diff, and deployed site.
 - [ ] Export this document (or `docs/CONSOLIDATED_FOR_PDF.md`) to **one PDF** with clear headings; paste **full text** of `docs/BUG_REPORT.md` into section 6 or attach as a subsection.
-- [ ] Spell-check and export from Markdown (VS Code / Cursor print, Pandoc, Google Docs, etc.) — see `docs/PDF_EXPORT.md` for options.
+- [ ] Spell-check and export from Markdown (VS Code preview → Print to PDF, Google Docs, etc.).
 
 ---
 
